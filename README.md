@@ -4,10 +4,10 @@ Materials for the *Complement of Bioinformatic Technics II* course, [Master in L
 Faculty of Sciences & Technologies, Haute-Ecole en Hainaut ([HEH](https://www.heh.be "link to HEH official webpage")) - November 2023
 
 
-## Requirements {reqs}
+## Requirements
 
-- A fresh R installation (v4.3.2 as of this time): [https://www.r-project.org](https://www.r-project.org)
-- RStudio (2023.09.1+494 or above): [https://posit.co/downloads/](https://posit.co/downloads/)
+- A fresh R installation (v4.3.2 as of this time): [https://www.r-project.org](https://www.r-project.org "link to download R")
+- RStudio (2023.09.1+494 or above): [https://posit.co/downloads/](https://posit.co/downloads/ "link to download RStudio")
 - The following R packages:
 
   ```bash
