@@ -1,8 +1,7 @@
 <img width="1430" alt="Screenshot 2022-10-25 at 10 46 07" src="https://user-images.githubusercontent.com/6929960/197727905-6b953946-1ac5-44f8-a780-ff99e974e276.png">
 
-Materials for the *Complement of Bioinformatic Technics II* course, [Master in Life Data Technologies](https://www.heh.be/master-ingenieur-en-technologies-des-donnees-du-vivant "link to Master program course list").
+Materials for the *Complement of Bioinformatic Technics II* course, [Master in Life Data Technologies](https://www.heh.be/master-ingenieur-en-technologies-des-donnees-du-vivant "link to Master program course list").  
 Faculty of Sciences & Technologies, Haute-Ecole en Hainaut ([HEH](https://www.heh.be "link to HEH official webpage")) - November 2023
-
 
 ## Requirements
 
