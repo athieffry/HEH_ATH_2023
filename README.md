@@ -27,4 +27,4 @@ Faculty of Sciences & Technologies, Haute-Ecole en Hainaut ([HEH](https://www.he
   BiocManager::install("rtracklayer")
   ```
 
-*Note:* you can check that installations were successful by loading each package using the command `library(package_name).`
+*Note:* you can check that installations were successful by loading each package using the command `library(package_name)`.
