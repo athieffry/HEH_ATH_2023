@@ -3,6 +3,16 @@ Horaires/
 Paperwork/
 Travel and expenses/
 
+# Keynote presentations
+Slides/keynote
+Slides/PDF
+
+# Datasets
+datasets/
+
+# Exercices
+Exercices/Day I*
+
 # MacOS DS_Store
 **/.DS_Store
 **/~$*
