@@ -1,5 +1,4 @@
-
-## Gene expression exploration - exercises
+## RNA-seq normalization - exercises
 
 You will find a gene expression matrix from an RNA-seq experiment investigation the transcriptome response of Arabidopsis thaliana (the plant model) to a flagellin treatment. The flagellin peptide simulates attack from a bacterial pathogen and should trigger a defense response from the plant. Your task is, first, to investigate the data and assess whether the experiment went well.
 
