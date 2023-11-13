@@ -1,12 +1,10 @@
-## ggplot2 exercices
 
-##### Background
+## Gene expression exploration - exercises
 
-You've been given a matrix of genes counts from an RNA-seq experiment. The experiment investigated *Arabidopsis thaliana* seedlings before and after treatment (30 min) with the flg22 peptide, which simulates a bacterial pathogen attack. Your professor asks you a couple of questions with that experiment and often expects you to produce figures to support your answers.
+You will find a gene expression matrix from an RNA-seq experiment investigation the transcriptome response of Arabidopsis thaliana (the plant model) to a flagellin treatment. The flagellin peptide simulates attack from a bacterial pathogen and should trigger a defense response from the plant. Your task is, first, to investigate the data and assess whether the experiment went well.
 
-##### Questions
-
-1. Download the data from https://github.com/athieffry/HEH_ATH_2023/blob/main/datasets/gene_count_matrix.xlsx and read them into R using the `readxl` package. Store the matrix in a variable called "mat".
-   - What are the dimensions of the gene count matrix?
-   - How many biological replicates are found?
-2. In one figure, show the distribution of gene counts for each sample, where the color of the line shows the condition. You will first neeed to use `melt()` from the `reshape2` package to transform the matrix into a long format. Then, you might want to use `separate()` to split the sample names into two colums: one for the condition, one for the replicate. If your plot looks weird, try to think about the axis scales...
+1. Use the `readxl` library to read the data in R. How many genes have been quantified? How many samples are provided and what is the number of replicates?
+2. Assess the distribution of read counts between samples in order to see if there are obvious outliers. Using ggplot2, create a density plot showing the distribution for all samples, colored by condition (control vs treatment). You will need to transform the data in long format using `melt()` from the `reshape2` package. What do you observe in the density plot?
+3. Building up from the previous plot, add a logarithmic scale for the X-axis. What is the warning message ggplot2 is showing you, and where does it come from?
+4. Try to come up with a solution to solve the warning created from the previous plot. Also, provide the plot with a 0.5 figure ratio and all the appropriate labels (title, subtitle, x-axis text, etc).
+5. What level of raw count expression is the most frequent in the data? How is it possible
