@@ -1,4 +1,4 @@
-# ggplot2 exercises
+## ggplot2 exercises
 
 Refresh your knowledge of **ggplot2** using the `diamonds` (part of Tidyverse):
 
