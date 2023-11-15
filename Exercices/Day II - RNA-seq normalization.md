@@ -9,10 +9,5 @@ You will find a gene expression matrix from an RNA-seq experiment investigation 
 5. What level of raw count expression (low, medium, high) is the most frequent in the data? How is it possible?
 6. Let's filter out the lowly expressed genes. A solid rule of thumb for RNA-seq data is to remove genes that have less than 10 reads in less than the minimum group size in the experiment. Remove all genes with less than 10 reads in less than 3 samples. There are a lot of ways to program this, be creative but keep it simple and elegant. How many genes did you removed, and how many are left?
 7. Calculate the total number of mapped reads (**in millions**) for each sample. What is the average number of reads?
-8. Normalize the raw gene count matrix by the total number of mapped reads. For this you will need to divide each row of the matrix by the vector of million total mapped reads from the previous question. Use the `apply()` function over rows. Be mindful that this matrix operation will invert the dimensions of your initi| col1 | col2 | col3 |
-   | ---- | ---- | ---- |
-   |      |      |      |
-   |      |      |      |
-
-   al dataframe, so you will need to transpose the result with `t()`.
+8. Normalize the raw gene count matrix by the total number of mapped reads. For this you will need to divide each row of the matrix by the vector of million total mapped reads from the previous question. Use the `apply()` function over rows. Be mindful that this matrix operation will invert the dimensions of your initial dataframe, so you will need to transpose the result with `t()`.
 9. Verify that the library normalization went well by computing the sum of mapped reads for each column. Use this normalized dataset to create a density plot. Finally, remove lowly-expressed genes we identified previously.
