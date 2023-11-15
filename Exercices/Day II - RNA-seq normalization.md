@@ -8,4 +8,3 @@ You will find a gene expression matrix from an RNA-seq experiment investigation 
 4. Try to come up with a solution to solve the warning created from the previous plot. Also, provide the plot with a 0.5 figure ratio and all the appropriate labels (title, subtitle, x-axis text, etc).
 5. What level of raw count expression (low, medium, high) is the most frequent in the data? How is it possible?
 6. Let's filter out the lowly expressed genes. A solid rule of thumb for RNA-seq data is to remove genes that have less than 10 reads in less than the minimum group size in the experiment. Remove all genes with less than 10 reads in less than 3 samples. There are a lot of ways to program this, be creative but keep it simple and elegant. How many genes did you removed, and how many are left?
-7.
