@@ -3,7 +3,8 @@ Slides/keynote
 Slides/PDF
 
 # Datasets
-datasets/Arabidopsis*
+datasets/Arabidopsis*.gff3
+datasets/Arabidopsis*.gtf
 
 # Exercices
 Exercices/Day II*
