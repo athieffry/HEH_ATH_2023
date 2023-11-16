@@ -105,3 +105,53 @@ if(PLOT) {
           gg_a / gg_b
           }
 
+
+# 6. Read gene annotation BED file
+# --------------------------------
+# a. read file and give column  names
+genes_bed <- read.table('~/Dropbox/Documents/HEH - Guest Lecturing/HEH_ATH_2023/datasets/Arabidopsis_thaliana_TAIR10_genes.bed') %>%
+             set_colnames(c('chr', 'start', 'end', 'gene_id', 'score', 'strand')) %>%
+             as_tibble()
+
+# b. check that number of lines is same as number of genes (no duplication)
+n_distinct(genes_bed$gene_id) == nrow(genes_bed)
+
+# c. calculate and add gene length in new column
+genes_bed %<>% mutate('length'=end-start)
+      # which is same as
+      # genes_bed <- genes_bed %>% mutate('length'=end-start)
+      # which is same as
+      # genes_bed <- mutate(genes_bed, 'length'=end-start)
+
+# d. plot gene length distribution (density)
+ggplot(genes_bed, aes(x=length)) +
+       geom_density() +
+       scale_x_log10() +
+       labs(title='Gene length distribution',
+            x='Gene length (bp, log-scaled)')
+
+mean(genes_bed$length)
+summary(genes_bed$length)
+
+# e. how many genes in our RPM matrix are found in the BED annotation?
+table(rownames(rpm_filtered) %in% genes_bed$gene_id)
+
+genes_bed %<>% filter(gene_id %in% rownames(rpm_filtered))
+rpm_filtered %<>% subset(rownames(rpm_filtered) %in% genes_bed$gene_id)
+
+# check
+nrow(genes_bed)==nrow(rpm_filtered)
+
+# f. reorder the BED file to have only the matrix genes and in the same order
+reorder_idx <- match(rownames(rpm_filtered), genes_bed$gene_id)
+genes_bed <- genes_bed[reorder_index, ]
+# sanity check - do gene IDs all match?
+all(genes_bed$gene_id == rownames(rpm_filtered))
+
+
+
+
+
+# divide by 1K
+# apply 2 for RPKM
+# density plot
