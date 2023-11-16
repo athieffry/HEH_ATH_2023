@@ -23,7 +23,7 @@ dim(mat)
 
 # 2. Gene expression density plot per sample, colored by condition
 # ----------------------------------------------------------------
-mat_filtered <- mat_filtered %>%
+mat_long <- mat %>%
             melt(id.vars='gene_id', variable.name='sample', value.name='count') %>%
             mutate('condition'=str_remove(sample, '_R.*$'))
 
@@ -35,7 +35,7 @@ if(PLOT) {
                  geom_density() +
                  scale_x_log10()
 
-          ggplot(mat_filtered, aes(x=count+1, col=condition, groups=sample)) +
+          ggplot(mat_long, aes(x=count+1, col=condition, groups=sample)) +
                 geom_density() +
                 scale_x_log10() +
                 theme(aspect.ratio=1) +
@@ -58,11 +58,16 @@ genes_tokeep <- mat %>%
                 pull('gene_id') %>%
                 unique()
 
-mat_filtered <- filter(mat, gene_id %in% genes_tokeep)
+mat_filtered <- mat %>% filter(gene_id %in% genes_tokeep)
+
+mat_filtered_long <- mat_filtered %>%
+                     melt(id.vars='gene_id', variable.name='sample', value.name='count') %>%
+                     mutate('condition'=str_remove(sample, '_R.*$'))
 
 
 # 4. RPM normalization
 # --------------------
+# get total number of reads from ALL genes (so use the initial matrix)
 total_reads <- mat %>% select(-gene_id) %>% colSums()
 
 rpm_filtered <- mat_filtered %>%
@@ -71,7 +76,7 @@ rpm_filtered <- mat_filtered %>%
                 t() %>%
                 as.data.frame()
 
-# sanity check - should be close to 1M
+# sanity check - total of columns should be close to 1M
 colSums(rpm_filtered)
 
 
