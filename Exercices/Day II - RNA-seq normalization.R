@@ -194,5 +194,6 @@ corrplot(corr=cor(rpkm), is.corr=F, diag=F, order='hclust', addrect=2)
 
 # l. save total mapped reads
 saveRDS(total_reads, '~/Dropbox/Documents/HEH - Guest Lecturing/HEH_ATH_2023/datasets/total_reads.rds')
+
 # m. save filtered count matrix
 saveRDS(mat_filtered, '~/Dropbox/Documents/HEH - Guest Lecturing/HEH_ATH_2023/datasets/mat_filtered.rds')
