@@ -144,14 +144,55 @@ nrow(genes_bed)==nrow(rpm_filtered)
 
 # f. reorder the BED file to have only the matrix genes and in the same order
 reorder_idx <- match(rownames(rpm_filtered), genes_bed$gene_id)
-genes_bed <- genes_bed[reorder_index, ]
+genes_bed <- genes_bed[reorder_idx, ]
 # sanity check - do gene IDs all match?
 all(genes_bed$gene_id == rownames(rpm_filtered))
 
+# g. divide gene lengths by 1000 to get the "K" in RPKM
+genes_bed %<>% mutate('length_kb'=length/1000)
 
+# h. normalize to RPKM
+rpkm <- rpm_filtered %>%
+        apply(2, function(x) divide_by(x, genes_bed$length_kb)) %>%
+        as.data.frame()
 
+# i. check relationship between expression and gene length
 
+# check that relationship bias between length and expression is less strong
+gg_rpm <- rpm_filtered %>%
+          as.data.frame() %>%
+          rownames_to_column('gene_id') %>%
+          left_join(genes_bed, by='gene_id') %>%
+          ggplot(aes(x=ctrl_R1+1, y=length_kb)) +
+                 geom_point(alpha=.1) +
+                 scale_x_log10() + scale_y_log10() +
+                 geom_smooth(method='lm') +
+                 theme(aspect.ratio=.75)
 
-# divide by 1K
-# apply 2 for RPKM
-# density plot
+gg_rpkm <- rpkm %>%
+           as.data.frame() %>%
+           rownames_to_column('gene_id') %>%
+           left_join(genes_bed, by='gene_id') %>%
+           ggplot(aes(x=ctrl_R1+1, y=length_kb)) +
+                  geom_point(alpha=.1) +
+                  scale_x_log10() + scale_y_log10() +
+                  geom_smooth(method='lm', se=T) +
+                  theme(aspect.ratio=.75)
+
+gg_rpm / gg_rpkm
+
+# check that overall expression distribution has been lowered (less biased by long genes)
+gg_before <- ggplot(rpm_filtered, aes(x=ctrl_R1+1)) + geom_density() + scale_x_log10() + labs(title='RPM')
+gg_after <- ggplot(rpkm, aes(x=ctrl_R1+1)) + geom_density() + scale_x_log10() + labs(title='RPKM')
+gg_before/gg_after
+
+# j. create a correlation matrix from the data
+cor(rpkm)
+
+# k. create a correlation heatmap with corrplot (package to install)
+corrplot(corr=cor(rpkm), is.corr=F, diag=F, order='hclust', addrect=2)
+
+# l. save total mapped reads
+saveRDS(total_reads, '~/Dropbox/Documents/HEH - Guest Lecturing/HEH_ATH_2023/datasets/total_reads.rds')
+# m. save filtered count matrix
+saveRDS(mat_filtered, '~/Dropbox/Documents/HEH - Guest Lecturing/HEH_ATH_2023/datasets/mat_filtered.rds')
