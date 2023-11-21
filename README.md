@@ -23,11 +23,11 @@ Faculty of Sciences & Technologies, Haute-Ecole en Hainaut ([HEH](https://www.he
 
 ## Useful things
 
-##### FiraCode
+#### FiraCode
 
 FiraCode is a great font that simplifies reading of scripts. Visit their [GitHub page](https://github.com/tonsky/FiraCode "FiraCode GitHub page") to see it by yourself and install it!
 
-##### RStudio parameters
+#### RStudio parameters
 
 Visit the RStudio options and check the following settings:
 
