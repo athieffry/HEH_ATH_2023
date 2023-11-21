@@ -17,7 +17,7 @@ PLOT <- FALSE
 
 # 1. Read expression matrix
 # -------------------------
-mat <- read_xlsx('~/Dropbox/Documents/HEH - Guest Lecturing/HEH_ATH_2023/datasets/gene_count_matrix.xlsx')
+mat <- read_xlsx('~/HEH_ATH_2023/datasets/gene_count_matrix.xlsx')
 dim(mat)
 
 

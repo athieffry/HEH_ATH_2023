@@ -2,12 +2,11 @@ library(tidyverse)
 library(tidylog)
 library(magrittr)
 library(DESeq2)
-
+library(gprofiler2)
 
 
 # 1. READ DATA
-total_counts <- readRDS('~/Dropbox/Documents/HEH - Guest Lecturing/HEH_ATH_2023/datasets/total_reads.rds')
-mat_filtered <- readRDS('~/Dropbox/Documents/HEH - Guest Lecturing/HEH_ATH_2023/datasets/mat_filtered.rds') %>%
+mat_filtered <- readRDS('~/HEH_ATH_2023/datasets/mat_filtered.rds') %>%
                 column_to_rownames('gene_id')
 
 # make sure all counts are integers
@@ -17,6 +16,7 @@ mat_filtered %<>% round()
 # 2. CREATE DESIGN TABLE (colData)
 colData <- tibble('sample'=colnames(mat_filtered),
                   'condition'=rep(c('control', 'treatment'), each=3))
+
 # make sure that control is the base level (denominator)
 colData %<>% mutate('condition'=factor(condition, levels=c('control', 'treatment')))
 
@@ -27,6 +27,8 @@ levels(colData$condition)
 dds <- DESeqDataSetFromMatrix(countData=mat_filtered,
                               colData=colData,
                               design= ~ condition)
+
+# usually there should be a couple of normalization steps here - we skip it for the sake of time
 
 # 4. PERFORM DIFFERENTIAL EXPRESSION ANALYSIS
 dds <- DESeq(dds)
@@ -51,8 +53,6 @@ up_degs <- res %>%
 
 length(up_degs)
 
-install.packages('gprofiler2')
-library(gprofiler2)
 go <- gost(up_degs, organism='athaliana', significant=T, user_threshold=0.05, correction_method='fdr')
 
 go$result %>% select(p_value, query_size, term_size, intersection_size, term_id, term_name) %>% as_tibble() %>% arrange(p_value)

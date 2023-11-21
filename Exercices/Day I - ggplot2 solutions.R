@@ -1,5 +1,5 @@
 # ggplot2 exercices: Solutions
-# Axel Thieffry - Nov. 2023library(tidyverse)
+# Axel Thieffry - Nov. 2023
 library(tidyverse)
 library(RColorBrewer)
 library(magrittr)
