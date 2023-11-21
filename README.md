@@ -18,14 +18,6 @@ Faculty of Sciences & Technologies, Haute-Ecole en Hainaut ([HEH](https://www.he
   install.packages("patchwork")
   install.packages("BiocManager")
   ```
-- The following Bioconductor packages:
-
-  ```bash
-  # run this in RStudio
-  BiocManager::install("GenomicRanges")
-  BiocManager::install("GenomicFeatures")
-  BiocManager::install("rtracklayer")
-  ```
 
 *Note:* you can check that installations were successful by loading each package using the command `library('package_name')`.
 
