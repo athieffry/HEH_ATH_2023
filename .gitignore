@@ -1,18 +1,3 @@
-# Keynote presentations
-Slides/keynote
-
-# Datasets
-datasets/Arabidopsis*.gff3
-datasets/Arabidopsis*.gtf
-
-# Exercices
-
-
-##########################
-##########################
-##########################
-
-# Folders to always ignore
 Horaires/
 Paperwork/
 Travel and expenses/
